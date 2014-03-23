@@ -41,7 +41,7 @@ images=images{1}; %changes the images matrix from a nX1 matrix to a 1Xn so that 
 for i=1:length(images) %iterate over all of the images in imagelist.txt
     [pathname name ext]=fileparts(images{i}); %[] to the left of the equals sign means that when the function finishes, the ouput frm the funciton will be saved into the variables you specified in the sq brackets
     im=imread(images{i});
-    for tol=0:50:300 %Tolerance is a setting w/in the magicwand script. See notes w/in script. 
+    for tol=0:50:300 %Tolerance is a setting w/in the magicwand script. COULD PROBABLY CHANGE TO 0:25:200 
         A=magicwand(im,[1 256],[1 256],tol); %look within all pixels from both y ([1 265]) and x ([1 256]) directions while iterating over the various tolerance levels set by tol.
         A=+~A; %~ Replaces 1s with 0s and vice versa. + Changes from a logical to a double matrix.
         imwrite(im,[odir name '_' num2str(tol) '.png'],'Alpha',A); %Write out these images using the magicwand output saved into matrix A to create your alpha map. 
