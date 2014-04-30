@@ -3,19 +3,26 @@ function best_seq = optseq3()
 % Each ITI precedes follows the corresponding stimulus.
 % Each row of the design matrix corresponds to a second.
 %
-% Creates jitters for learning portion of RewCon experiment
+% Creates jitters for objrec portion of ABCDCon experiment
 %
-% MarikaCI with help from ChrisPS 09/08/13
+% MarikaCI with help from ChrisPS 09/08/13; HRZ edited for ABCDCon 04/29/14
 
-nconds = 16; % number of conditions
-nrepeats = 3; % number of times each condition is repeated in each run
+nconds = 5; % number of conditions
+nrepeats = 10; % number of times each condition is repeated in each run
+nruns = 5;
 n = nconds*nrepeats;
-len_cond = 2; % in seconds. Only considering the first 1/3 of 6 second trial, and adding the rest to the ITI
+len_cond = 3; % in seconds--this should be the same length as quesduration in objectRecog script
+len_tr = 2100/1000; %in ms, converts to seconds
+if len_tr/len_cond < 1
+    padding = (2*len_tr) - len_cond; % THERE MUST BE A BETTER WAY TO GENERALIZE
+else
+    padding = len_tr - len_cond;
+end %if
 niter = 1000;
 
 %Generate very orderly sequence of ITIs, to be randomized later.
-ITI_opts = [2; 3; 4] + 4; % specify what other ITI lengths you want -- adding 4 to each ITI to cover the last 2/3 of 6 second trial
-orderly_ITI_seq = repmat(ITI_opts, [n/3, 1]);
+ITI_opts = [2; 3; 4] + padding; % specify what other ITI lengths you want -- adding the amount of padding needed to make sure trials always start on a TR
+orderly_ITI_seq = repmat(ITI_opts, [n/3, 1]); % ASK MARIKA ABOUT THIS -- why n/3???
 
 eff = nan(niter,1); %initializing vector of efficiencies (each element corresponding to an iteration)
 max_eff = 0;
@@ -28,8 +35,8 @@ for iter = 1:niter
     %Randomize order of ITIs
     ITI_seq = orderly_ITI_seq(randperm(n));
     
-    %Randomize order of conds, with constraint that all 16 be randomized in
-    %groups (i.e. conds 1:16;1:16;1:16)
+    %Randomize order of conds, with constraint that nrepeats be randomized in
+    %groups (i.e. conds 1:length(nrepeats);1:length(nrepeats);1:length(nrepeats))
     cond_seq = nan(n,1); %initializing
     not_good = 1;
     while not_good == 1;
@@ -47,7 +54,7 @@ for iter = 1:niter
  
     %Put everything in a design matrix, X
     start_times = cumsum(ITI_seq) - ITI_seq(1) + cumsum(len_cond*ones(n,1)) - len_cond;
-    cooldown = 8;
+    cooldown = 8; % WHAT IS THIS???
     nsec = sum(ITI_seq) + len_cond*n + cooldown; %Sum of all ITIs plus sum of all trial durations plus cooldown
     X = zeros(nsec, nconds);
     for i = 1:n
