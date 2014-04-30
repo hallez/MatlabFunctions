@@ -12,7 +12,7 @@ nrepeats = 10; % number of times each condition is repeated in each run
 nruns = 5;
 n = nconds*nrepeats;
 len_cond = 3; % in seconds--this should be the same length as quesduration in objectRecog script
-len_tr = 2100/1000; %in ms, converts to seconds
+len_tr = 2010/1000; %in ms, converts to seconds
 if len_tr/len_cond < 1
     padding = (2*len_tr) - len_cond; % THERE MUST BE A BETTER WAY TO GENERALIZE
 else
