@@ -23,6 +23,6 @@ hist(jitters,20);
 
 ITI = jitters-(mean(jitters)-4000);
 
-save([savedir '/HS3_RSA_task_jitter.mat'],'ITI');
+save([savedir '/ABCDCon_jitter.mat'],'ITI');
 
 end
