@@ -1,16 +1,15 @@
 %% function [] = RSA_ITI
-% Edited code from Maureen, creates jitters for pre-post RSA in RewCon
-% experiment
+% Edited code from Maureen, creates jitters.
 %
 % Mean is 4000 ms but range is from 2000ms to 8000 ms -- these are
 % hardcoded below and will need to be changed for different studies
 %
-% MCI 09/01/13
+% MCI 09/01/13, more edits HRZ 04/29/14 
 
-function [] = RSA_ITI
+function [] = RSA_ITI_Ritchey
 
 savedir = input('Savedir: ');
-trial_no = input('Number of trials: '); % input number of trials in each run
+trial_no = input('Number of trials per run: '); % input number of trials in each run
 
 jitflag = 1;
 while jitflag == 1
