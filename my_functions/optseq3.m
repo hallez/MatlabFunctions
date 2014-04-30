@@ -21,8 +21,12 @@ end %if
 niter = 1000;
 
 %Generate very orderly sequence of ITIs, to be randomized later.
-ITI_opts = [2; 3; 4] + padding; % specify what other ITI lengths you want -- adding the amount of padding needed to make sure trials always start on a TR
-orderly_ITI_seq = repmat(ITI_opts, [n/3, 1]); % ASK MARIKA ABOUT THIS -- why n/3???
+minITI = 0.5;
+maxITI = 5; 
+rng('shuffle') % set properties for random generator seed (shuffle allows randomization based on current time)
+potential_ITIs = minITI + (maxITI-minITI) .* rand([1,nrepeats]);
+ITI_opts = potential_ITIs + padding; % specify what other ITI lengths you want -- adding the amount of padding needed to make sure trials always start on a TR
+orderly_ITI_seq = repmat(ITI_opts, [n/nrepeats, 1]); 
 
 eff = nan(niter,1); %initializing vector of efficiencies (each element corresponding to an iteration)
 max_eff = 0;
