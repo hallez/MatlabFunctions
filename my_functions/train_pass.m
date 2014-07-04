@@ -10,9 +10,11 @@ month_no = [01;02;03;04;05;06;07;08;09;10;11;12];
 year = 2014;
 
 % ticket prices
-monthly_pass = 222+11; % goTrain discount + $11 difference for martinez-davis monthly
-daily = 16*2; % round-trip cost for a single martinez-davis trip
-ten_ride = 98; % martinez-davis ten_ride cost
+monthly_pass_fullvalue = 426;
+goTrain_discount = 23;
+monthly_pass = monthly_pass_fullvalue - goTrain_discount; 
+daily = 24.30 * 2; % round-trip cost for a single emeryville-davis trip
+ten_ride = 162; % emeryville-davis ten_ride cost
 
 mon_find = strcmp(Month,possible_months);
 days = number_of_days(mon_find==1);
