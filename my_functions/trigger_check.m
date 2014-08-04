@@ -14,7 +14,7 @@ function trigger_check
 % MI 07/16/14
 
     %% Setup
-    addpath(genpath('~/Dropbox/matlab_scripts')) % load in psychtoolbox
+    addpath(genpath('~/Documents/MATLAB/my_functions')) % load in psychtoolbox
 
     % get Keyboard number
     function k = getKeyboardNumber();
