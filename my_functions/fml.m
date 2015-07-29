@@ -2,5 +2,6 @@
 % Ritchey.
 % author: Halle R. Zucker, 9/18/14
 fclose all
+close all
 clear all
 clc
