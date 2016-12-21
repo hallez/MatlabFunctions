@@ -1,0 +1,14 @@
+addpath(genpath('/Users/hrzucker/Documents/MATLAB/my_functions/'))
+addpath(genpath('/Applications/spm8/'))
+
+% so that can use matlab version of nanmean, nanstd, etc., remove fieldtrip
+% src folder
+rmpath('/Applications/spm8/external/fieldtrip/src/')
+
+% add path for conn toolbox
+% currently, this resides in the memoBC project
+% requires that the server is mounted
+addpath(genpath('/Volumes/dml/hrzucker/memoBC/conn'))
+
+% stop in debugger if error
+dbstop if error
