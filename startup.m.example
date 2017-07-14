@@ -1,6 +1,6 @@
 addpath(genpath('/Users/<USER-NAME>/Documents/MATLAB/my_functions/'))
 addpath(genpath('/Applications/spm8/'))
-addpath(genpath('Applications/eeglab14_1_1b/'))
+addpath('/Applications/eeglab14_1_1b/')
 
 % so that can use matlab version of nanmean, nanstd, etc., remove fieldtrip
 % src folder
