@@ -10,3 +10,4 @@ If need to remove an old symbolic link, use rm -r <MATLAB-dir> with no trailing 
 
 1. Create a machine-specific startup.m file using startup.m.example as a base. Be sure to replace <USER-NAME>
 cp startup.m.example ~/Documents/MATLAB/startup.m 
+  * On newer installs, the startup file now seems to live in `/Users/<user-name>/matlab/`
